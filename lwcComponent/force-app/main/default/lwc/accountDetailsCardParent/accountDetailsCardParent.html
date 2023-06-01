@@ -1,0 +1,66 @@
+<template>
+    <lightning-card>
+        <div class="nav-bar">
+            <div class="nav-heading">
+                <h3 style="text-align: center;"><b>Accounts Details</b></h3>
+            </div>
+             <div class="nav-buttons" >
+                <lightning-input type="text" label=""
+                   placeholder="Search here"
+                    value={searchKey} 
+                    onchange={handleSearchKeyChange}  style="margin-top: -18px;"> 
+                </lightning-input>
+                <lightning-button label="Search" variant="brand" onclick={handleSearch}>
+                </lightning-button>
+                <lightning-button  label="Delete" onclick={callDelete} value={currectRecordId}></lightning-button>
+                <lightning-button label="Create" onclick={callCreate} ></lightning-button>
+            </div>
+          </div>
+        <div>
+        <lightning-layout multiple-rows="true" >
+            <template for:each={accounts.data} for:item="acc">
+                <lightning-layout-item padding="around-small" size="4" key={acc.Id} >
+                     <lightning-card>
+                        <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                            <div><b>AccountId:</b>{acc.Id}</div>
+                            <div><b>Name:</b>{acc.Name}</div>
+                            <div><b>Industry:</b>{acc.Industry}</div>
+                            <div><b>Type:</b>{acc.Type}</div>
+                            <div><b>AnnualRevenue:</b>{acc.AnnualRevenue}</div>
+                            <div style=" background-color: #f7a5a5; padding-bottom:20px;">
+                                 <hr style="margin-top:20px;">
+                                 <div class="nav-buttons" style="margin-top:-17px; margin-left: 20%;">
+                                    <h1 style="margin-top:8px;"><b>Select the checkbox :</b></h1>
+                                    <label style="margin-top:8px;">
+                                      <input type="checkbox" checked={isChecked} value={acc.Id} onchange={handleChange}/>
+                                    <span>{label}</span>
+                                    </label>
+                                    <lightning-button  label="Update"  onclick={showModalPopup} value={currectRecordId}></lightning-button>
+                                </div>
+                            </div> 
+                        </div>
+                    </lightning-card> 
+                 </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+    
+    <footer>
+       <h2 style="text-align: center;"><b>This is footer</b></h2>
+    </footer>
+
+    <!-- child for update -->
+    <template if:true={showModal}>
+        <c-account-details-card-update-child show-modal={showModal} onclose={closeModal} parentdata={currentRecordId} >
+            
+        </c-account-details-card-update-child>
+   </template>
+    <!-- child for create -->
+   <template if:true={showModalCreate}>
+        <c-account-details-card-create-child show-modal={showModalCreate} onclose={closeModalCreate}  >
+            
+        </c-account-details-card-create-child>
+   </template>
+
+</lightning-card>
+</template>

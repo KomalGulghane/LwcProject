@@ -1,0 +1,10 @@
+<template>
+    <lightning-button label="Iterate and Log" onclick={handleButtonClick}></lightning-button>
+    <ul>
+        <template for:each={fruits} for:item="fruit">
+            <li key={fruit}>{fruit}</li>
+        </template>
+    </ul>
+
+
+</template>

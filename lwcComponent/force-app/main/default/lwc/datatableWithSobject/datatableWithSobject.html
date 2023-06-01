@@ -1,0 +1,37 @@
+<template>
+    <lightning-card class="slds-text-align_center">
+        <h1 style="font-size: 20px;"><b>{selectedAccountObject}</b></h1>
+        <br>
+           <!-- DROPDOWN FOR ACCOUNT OBJECTS -->
+    <lightning-layout>
+        <div>
+           <h1><b>Select Object:</b></h1>
+        </div>
+        <div style=" margin-top:-24px; margin-left:10px; width:15%;">
+          <lightning-combobox
+            name="accountObject"
+            placeholder="Select an object" 
+            value={selectedAccountObject}
+            options={accountObjectOptions}
+            onchange={handleAccountObjectChange}
+          ></lightning-combobox> 
+        </div>
+      </lightning-layout>
+      <br>
+      <br>
+      <!--LIGHTNING DATATABLE-->
+        <div>
+            <lightning-datatable key-field="Id" data={recordsToDisplay}  columns={columns}></lightning-datatable>
+        </div>
+        <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+          <!--PAGE NAVIGATION-->
+           <div class="slds-align_absolute-center" style="height:5rem">
+               <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+               &nbsp;
+               <span class="slds-badge"> {pageNumber} &nbsp;/&nbsp; {totalPages} </span>
+               &nbsp;
+               <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+            </div>
+         </div>
+   </lightning-card>
+</template>

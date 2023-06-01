@@ -1,0 +1,12 @@
+<template>
+    <template if:true={assignmentGroups}>
+        <lightning-tree-grid
+            columns={columns}
+            data={assignmentGroups}
+            key-field="Id">
+        </lightning-tree-grid>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</template>

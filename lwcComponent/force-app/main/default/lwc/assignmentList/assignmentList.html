@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="">
+        <div class="slds-m-around_medium">
+            <div>
+                <h2><b>Assignment Details:</b></h2>
+                <lightning-input style="Width:10%;" type="text" label="Search here" value={searchTerm} onchange={handleSearchChange}></lightning-input>
+             </div>
+            
+        </div>
+        <lightning-datatable columns={columns} data={recordsToDisplay} key-field="Id" hide-checkbox-column="true">
+        </lightning-datatable>
+        <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+            <!--PAGE NAVIGATION-->
+            <div class="slds-align_absolute-center" style="height:5rem">
+                <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+                &nbsp;
+                <span class="slds-badge"> {pageNumber} &nbsp;/&nbsp; {totalPages} </span>
+                &nbsp;
+                <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
